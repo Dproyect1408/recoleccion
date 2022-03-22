@@ -95,12 +95,13 @@ Partial Class _Default
         SqlDataSource2.DataSourceMode = SqlDataSourceMode.DataReader
         data1 = SqlDataSource2.Select(DataSourceSelectArguments.Empty)
         DataList1.DataSource = data1
-        While data1.Read
+        If data1.Read Then
             renta = 0
+            'se agrega costo de la renta
             renta = data1.GetValue(1) * 100
-            SqlDataSource3.InsertCommand = "insert into tt_rentas(fecha,mes,pagado,cliente,cantidad,tipo) values ('" & fecha.ToString("yyyy-MM-dd") & "','" & fecha.Month & "', '" & 0 & "', '" & data1.GetValue(0) & "', '" & renta & "', '" & 0 & "')"
+            SqlDataSource3.InsertCommand = "insert into tt_rentas(fecha,mes,pagado,cliente,cantidad,tipo) values ('" & fecha.ToString("yyyy-MM-dd HH:mm:ss") & "','" & fecha.Month & "', '" & 0 & "', '" & data1.GetValue(0) & "', '" & renta & "', '" & 0 & "')"
             SqlDataSource3.Insert()
-        End While
+        End If
         data1.Close()
 
     End Sub

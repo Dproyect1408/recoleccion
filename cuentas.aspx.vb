@@ -151,7 +151,6 @@ Partial Class _Default
                     If Val(TextBox1.Text) <> 0 And Val(Label40.Text) = 0 Then
                         b = Val(TextBox1.Text)
                     ElseIf Val(TextBox1.Text) = 0 And Val(Label40.Text) <> 0 Then
-                        b = Val(Label44.Text)
                     End If
                     a = "recibo.aspx?a=" + ddl_cliente.SelectedItem.Text + "&b=" + b + "&c=" + Label46.Text + "&d=" + Label48.Text + "&e=" + DropDownList1.SelectedValue + "&f=" + num
                     Dim script As String = " window.open('" + a + "','');"
