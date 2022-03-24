@@ -126,6 +126,7 @@
 
                         &nbsp; <asp:DropDownList ID="DropDownList1" runat="server" Font-Size="Large">
                                     <asp:ListItem>0</asp:ListItem>
+                                    <asp:ListItem>0</asp:ListItem>
                                     <asp:ListItem Value=".5">1/2</asp:ListItem>
                                     <asp:ListItem>1</asp:ListItem>
                                     <asp:ListItem>2</asp:ListItem>
@@ -147,6 +148,7 @@
                         &nbsp;<asp:Label ID="Label23" runat="server" Text="Rentas: " Font-Size="Medium" Font-Bold="True"></asp:Label>
 
                                 <asp:DropDownList ID="DropDownList2" runat="server" Font-Size="Large">
+                                    <asp:ListItem>0</asp:ListItem>
                                     <asp:ListItem>0</asp:ListItem>
                                     <asp:ListItem>1</asp:ListItem>
                                     <asp:ListItem>2</asp:ListItem>
