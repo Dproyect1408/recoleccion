@@ -143,6 +143,7 @@
                                     <asp:ListItem>13</asp:ListItem>
                                     <asp:ListItem>14</asp:ListItem>
                                     <asp:ListItem>15</asp:ListItem>
+							      <asp:ListItem>16</asp:ListItem>
                                 </asp:DropDownList>
 
                         &nbsp;<asp:Label ID="Label23" runat="server" Text="Rentas: " Font-Size="Medium" Font-Bold="True"></asp:Label>
