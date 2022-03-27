@@ -166,13 +166,13 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                <asp:Label ID="Label28" runat="server" Font-Bold="True" Font-Size="X-Large" ForeColor="Black" Text="Cantidad de Rentas por Mes:"></asp:Label>
+                                <asp:Label ID="Label28" runat="server" Font-Bold="True" Font-Size="X-Large" ForeColor="Black" Text="Cantidad de Rentas Registradas por Mes:"></asp:Label>
                                 <asp:Label ID="Label38" runat="server" Font-Bold="True" Font-Size="X-Large" ForeColor="#FF6600" Text="Label"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                <asp:Label ID="Label43" runat="server" Font-Bold="True" Font-Size="X-Large" ForeColor="Black" Text="Mes a pagar: "></asp:Label>
+                                <asp:Label ID="Label43" runat="server" Font-Bold="True" Font-Size="X-Large" ForeColor="Black" Text="Elige el Mes que se va a Pagar: "></asp:Label>
                                             <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" Font-Size="X-Large" Width="291px">
                                             </asp:DropDownList>
                                         </td>
@@ -180,24 +180,24 @@
                                     <tr>
                                         <td>
 
-                                <asp:Label ID="Label31" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Deuda: $ "></asp:Label>
+                                <asp:Label ID="Label31" runat="server" Font-Bold="True" Font-Size="X-Large" Text="DeudaTotal del mes Seleccionado: $ "></asp:Label>
                                 &nbsp;<asp:Label ID="Label44" runat="server" Font-Bold="True" Font-Size="XX-Large" ForeColor="Red"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="auto-style9">&nbsp;<asp:Label ID="Label45" runat="server" Font-Bold="True" Font-Size="Medium" Text="Rentas: $ "></asp:Label>
+                                        <td class="auto-style9">&nbsp;<asp:Label ID="Label45" runat="server" Font-Bold="True" Font-Size="Medium" Text="Deuda de las Rentas en el Mes que se selecciono: $ "></asp:Label>
 
                                 <asp:Label ID="Label46" runat="server" Font-Bold="True" Font-Size="Medium"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>&nbsp;<asp:Label ID="Label47" runat="server" Font-Bold="True" Font-Size="Medium" Text="Recolecciones:  $ "></asp:Label>
+                                        <td>&nbsp;<asp:Label ID="Label47" runat="server" Font-Bold="True" Font-Size="Medium" Text="Deuda de  Recolecciones en el mes que se selecciono:  $ "></asp:Label>
 
                                 <asp:Label ID="Label48" runat="server" Font-Bold="True" Font-Size="Medium"></asp:Label>
                                         </td>
                                     </tr>
                                 </table>
-                                <asp:Label ID="Label22" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Abonar :"></asp:Label>
+                                <asp:Label ID="Label22" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Cantidad que se va a Abonar o Pagar  :"></asp:Label>
                                 <asp:TextBox ID="TextBox1" runat="server" Font-Size="X-Large" Height="26px" Width="329px">0</asp:TextBox>
 
                                 <br />
