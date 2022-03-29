@@ -204,7 +204,7 @@
 &nbsp;<br />
                                 <br />
 
-                     <asp:Button ID="Button6" runat="server" Text="Pagar todo el adeudo" Width="25%"  class="primary-btn text-uppercase" CssClass="auto-style1" Height="123px" Font-Size="X-Large" ForeColor="#00CC00"/>
+                     <asp:Button ID="Button6" runat="server" Text="Pagar todo el adeudo" Width="25%"  class="primary-btn text-uppercase" CssClass="auto-style1" Height="123px" Font-Size="X-Large" ForeColor="#00CC00" Visible="False"/>
 
                                 &nbsp;&nbsp;&nbsp;&nbsp;
 

@@ -599,4 +599,8 @@ Partial Class _Default
 
     '    End If
     'End Sub
+
+    Protected Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+
+    End Sub
 End Class
