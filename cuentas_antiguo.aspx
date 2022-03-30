@@ -1,4 +1,4 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="cuentas.aspx.vb" Inherits="_Default" %>
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="cuentas_antiguo.aspx.vb" Inherits="_Default" %>
 
 <!DOCTYPE html>
 	<html lang="zxx" class="no-js">
@@ -204,7 +204,11 @@
 &nbsp;<br />
                                 <br />
 
-                     <asp:Button ID="Button2" runat="server" Text="Abonar e Imprimir" Width="100%"  class="primary-btn text-uppercase" CssClass="auto-style1" Height="123px" Font-Size="X-Large" ForeColor="#00CC00"/>
+                     <asp:Button ID="Button6" runat="server" Text="Pagar todo el adeudo" Width="25%"  class="primary-btn text-uppercase" CssClass="auto-style1" Height="123px" Font-Size="X-Large" ForeColor="#00CC00" Visible="False"/>
+
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+
+                     <asp:Button ID="Button2" runat="server" Text="Abonar e Imprimir" Width="25%"  class="primary-btn text-uppercase" CssClass="auto-style1" Height="123px" Font-Size="X-Large" ForeColor="#00CC00"/>
 
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
