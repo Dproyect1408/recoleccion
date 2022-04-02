@@ -37,7 +37,7 @@ Partial Class _Default
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        SqlDataSource2.UpdateCommand = "update tt_cliente set cliente='" & txt_nombre.Text & "',telefono='" & txt_telefono.Text & "',direccion='" & txt_direccion.Text & "' ,Comentarios='" & txt_comentarios.Text & "',num_casa='" & txt_casa.Text & "',visitas='" & DropDownList1.SelectedItem.Text & "',rentas='" & DropDownList2.SelectedItem.Text & "' where id='" & Label17.Text & "' "
+        SqlDataSource2.UpdateCommand = "update tt_cliente set cliente='" & txt_nombre.Text & "',telefono='" & txt_telefono.Text & "',direccion='" & txt_direccion.Text & "' ,Comentarios='" & txt_comentarios.Text & "',num_casa='" & txt_casa.Text & "',visitas='" & DropDownList1.SelectedItem.Value & "',rentas='" & DropDownList2.SelectedItem.Text & "' where id='" & Label17.Text & "' "
         SqlDataSource2.Update()
         Response.Redirect("baja_clientes.aspx")
     End Sub

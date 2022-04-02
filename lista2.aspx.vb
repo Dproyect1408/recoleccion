@@ -99,7 +99,7 @@ Partial Class _Default
             renta = 0
             'se agrega costo de la renta
             renta = data1.GetValue(1) * 100
-            SqlDataSource3.InsertCommand = "insert into tt_rentas(fecha,mes,pagado,cliente,cantidad,tipo) values ('" & fecha.ToString("yyyy-MM-dd HH:mm:ss") & "','" & fecha.Month & "', '" & 0 & "', '" & data1.GetValue(0) & "', '" & renta & "', '" & 0 & "')"
+            SqlDataSource3.InsertCommand = "insert into tt_rentas(fecha,mes,pagado,cliente,cantidad,tipo,imprimir) values ('" & fecha.ToString("yyyy-MM-dd HH:mm:ss") & "','" & fecha.Month & "', '" & 0 & "', '" & data1.GetValue(0) & "', '" & renta & "', '" & 0 & "', '" & 0 & "')"
             SqlDataSource3.Insert()
         End If
         data1.Close()

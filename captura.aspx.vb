@@ -134,7 +134,7 @@ Partial Class _Default
 
         ' insertamos el costo de la recoleccion 
         fecha = Date.Now
-        SqlDataSource2.InsertCommand = "insert into tt_rentas(fecha,mes,pagado,cliente,cantidad,tipo) values ('" & fecha.ToString("yyyy-MM-dd HH:mm:ss") & "','" & fecha.Month & "', '" & 0 & "', '" & ddl_cliente.SelectedValue & "', '" & cantidad & "', '" & 1 & "')"
+        SqlDataSource2.InsertCommand = "insert into tt_rentas(fecha,mes,pagado,cliente,cantidad,tipo,imprimir) values ('" & fecha.ToString("yyyy-MM-dd HH:mm:ss") & "','" & fecha.Month & "', '" & 0 & "', '" & ddl_cliente.SelectedValue & "', '" & cantidad & "', '" & 1 & "', '" & 0 & "')"
         SqlDataSource2.Insert()
 
 

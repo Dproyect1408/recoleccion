@@ -123,7 +123,7 @@ Partial Class _Default
                     SqlDataSource2.Update()
                     SqlDataSource2.UpdateCommand = "update tt_cliente set saldo='" & 0 & "' where id='" & ddl_cliente.SelectedItem.Value & "'"
                     SqlDataSource2.Update()
-                    a = "impresion_recibo.aspx?a=" + ddl_cliente.SelectedItem.Text + "&b=" + Val(TextBox1.Text) + "&c=" + Label46.Text + "&d=" + Label48.Text + "&e=" + DropDownList1.SelectedValue + "&f=" + num + "&g=" + ddl_cliente.SelectedValue
+                    a = "impresion_recibo.aspx?a=" + ddl_cliente.SelectedItem.Text + "&b=" + TextBox1.Text + "&c=" + Label46.Text + "&d=" + Label48.Text + "&e=" + DropDownList1.SelectedValue + "&f=" + num + "&g=" + ddl_cliente.SelectedValue
                     Dim script As String = " window.open('" + a + "','');"
                     ScriptManager.RegisterStartupScript(Me, Me.GetType(), "popup", script, True)
                 End If
@@ -138,7 +138,7 @@ Partial Class _Default
                     SqlDataSource2.UpdateCommand = "update tt_cliente set saldo='" & resto & "' where id='" & ddl_cliente.SelectedItem.Value & "'"
                     SqlDataSource2.Update()
 
-                    a = "impresion_recibo.aspx?a=" + ddl_cliente.SelectedItem.Text + "&b=" + Val(TextBox1.Text) + "&c=" + Label46.Text + "&d=" + Label48.Text + "&e=" + DropDownList1.SelectedValue + "&f=" + num + "&g=" + ddl_cliente.SelectedValue
+                    a = "impresion_recibo.aspx?a=" + ddl_cliente.SelectedItem.Text + "&b=" + TextBox1.Text + "&c=" + Label46.Text + "&d=" + Label48.Text + "&e=" + DropDownList1.SelectedValue + "&f=" + num + "&g=" + ddl_cliente.SelectedValue
                     Dim script As String = " window.open('" + a + "','');"
                     ScriptManager.RegisterStartupScript(Me, Me.GetType(), "popup", script, True)
                 End If

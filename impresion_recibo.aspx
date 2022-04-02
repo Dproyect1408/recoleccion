@@ -134,7 +134,7 @@
                                             <tr>
                                                 <td  class="auto-style5">
                                                     <asp:Label ID="Label17" runat="server" Text="Fecha" Font-Bold="True" ForeColor="White"></asp:Label>
-                                                </td>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Cantidad</td>
                                         
                                             </tr>
                                         </table>
@@ -144,6 +144,8 @@
                                        
                                                     <asp:Label ID="fechaLabel" runat="server" Text='<%# Eval("fecha") %>' />
                                                     <asp:Label ID="fechaLabel0" runat="server" Text='<%# Eval("id") %>' Visible="False" />
+                                            
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $<asp:Label ID="fechaLabel1" runat="server" Text='<%# Eval("cantidad_pagada") %>' />
                                             
                                     </ItemTemplate>
                                     <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />

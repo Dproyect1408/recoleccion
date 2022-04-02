@@ -114,16 +114,18 @@ Partial Class _Default
             data33.Close()
             'si tiene saldo a favor o no
             Dim a, b, c As String
+            Dim abono As String
+            abono = TextBox1.Text
             If Label40.Text = 0 Then
                 'se actualiza la tabla abomo con la cantidad de abonado 
                 If (Val(TextBox1.Text) = Label44.Text) Then
                     SqlDataSource2.InsertCommand = "insert into tt_abonos(id_cliente,fecha,cantidad,renta,recoleccion) values('" & ddl_cliente.SelectedValue & "', '" & fecha.ToString("yyyy-MM-dd HH:mm:ss") & "', '" & Val(TextBox1.Text) & "', '" & Label46.Text & "', '" & Label48.Text & "')"
                     SqlDataSource2.Insert()
-                    SqlDataSource2.UpdateCommand = "update tt_rentas set pagado='" & 1 & "' where mes='" & DropDownList1.SelectedValue & "' and cliente='" & ddl_cliente.SelectedItem.Value & "'"
+                    SqlDataSource2.UpdateCommand = "update tt_rentas set pagado='" & 1 & "', imprimir='" & 1 & "',cantidad_pagada=cantidad_pagada + cantidad, cantidad=0 where mes='" & DropDownList1.SelectedValue & "' and cliente='" & ddl_cliente.SelectedItem.Value & "'"
                     SqlDataSource2.Update()
                     SqlDataSource2.UpdateCommand = "update tt_cliente set saldo='" & 0 & "' where id='" & ddl_cliente.SelectedItem.Value & "'"
                     SqlDataSource2.Update()
-                    a = "impresion_recibo.aspx?a=" + ddl_cliente.SelectedItem.Text + "&b=" + Val(TextBox1.Text) + "&c=" + Label46.Text + "&d=" + Label48.Text + "&e=" + DropDownList1.SelectedValue + "&f=" + num + "&g=" + ddl_cliente.SelectedValue
+                    a = "impresion_recibo.aspx?a=" + ddl_cliente.SelectedItem.Text + "&b=" + abono + "&c=" + Label46.Text + "&d=" + Label48.Text + "&e=" + DropDownList1.SelectedValue + "&f=" + num + "&g=" + ddl_cliente.SelectedValue
                     Dim script As String = " window.open('" + a + "','');"
                     ScriptManager.RegisterStartupScript(Me, Me.GetType(), "popup", script, True)
                 End If
@@ -133,12 +135,12 @@ Partial Class _Default
                     resto = (Val(TextBox1.Text)) - Val(Label44.Text)
                     SqlDataSource2.InsertCommand = "insert into tt_abonos(id_cliente,fecha,cantidad,renta,recoleccion) values('" & ddl_cliente.SelectedValue & "', '" & fecha.ToString("yyyy-MM-dd HH:mm:ss") & "', '" & Label44.Text & "', '" & Label46.Text & "', '" & Label48.Text & "')"
                     SqlDataSource2.Insert()
-                    SqlDataSource2.UpdateCommand = "update tt_rentas set pagado='" & 1 & "' where mes='" & DropDownList1.SelectedValue & "' and cliente='" & ddl_cliente.SelectedItem.Value & "'"
+                    SqlDataSource2.UpdateCommand = "update tt_rentas set pagado='" & 1 & "', imprimir='" & 1 & "',cantidad_pagada= cantidad_pagada + cantidad, cantidad=0 where mes='" & DropDownList1.SelectedValue & "' and cliente='" & ddl_cliente.SelectedItem.Value & "'"
                     SqlDataSource2.Update()
                     SqlDataSource2.UpdateCommand = "update tt_cliente set saldo='" & resto & "' where id='" & ddl_cliente.SelectedItem.Value & "'"
                     SqlDataSource2.Update()
-
-                    a = "impresion_recibo.aspx?a=" + ddl_cliente.SelectedItem.Text + "&b=" + Val(TextBox1.Text) + "&c=" + Label46.Text + "&d=" + Label48.Text + "&e=" + DropDownList1.SelectedValue + "&f=" + num + "&g=" + ddl_cliente.SelectedValue
+                    ' agrega el resto al envio por query en la literal h
+                    a = "impresion_recibo.aspx?a=" + ddl_cliente.SelectedItem.Text + "&b=" + abono + "&c=" + Label46.Text + "&d=" + Label48.Text + "&e=" + DropDownList1.SelectedValue + "&f=" + num + "&g=" + ddl_cliente.SelectedValue
                     Dim script As String = " window.open('" + a + "','');"
                     ScriptManager.RegisterStartupScript(Me, Me.GetType(), "popup", script, True)
                 End If
@@ -162,14 +164,16 @@ Partial Class _Default
                         contador += 1
 
                     End While
+
                     For x = 0 To contador
                         If Val(TextBox1.Text) > 0 Then
                             If renta(x, 1) > Val(TextBox1.Text) Then
-                                SqlDataSource2.UpdateCommand = "update tt_rentas set cantidad= cantidad - '" & Val(TextBox1.Text) & "' where mes='" & DropDownList1.SelectedValue & "' and id='" & renta(x, 0) & "'"
+
+                                SqlDataSource2.UpdateCommand = "update tt_rentas set cantidad_pagada= cantidad_pagada + '" & Val(TextBox1.Text) & "',cantidad= cantidad - '" & Val(TextBox1.Text) & "', imprimir='" & 1 & "'  where mes='" & DropDownList1.SelectedValue & "' and id='" & renta(x, 0) & "'"
                                 SqlDataSource2.Update()
                                 TextBox1.Text = 0
                             Else
-                                SqlDataSource2.UpdateCommand = "update tt_rentas set pagado='" & 1 & "', cantidad= 0 where mes='" & DropDownList1.SelectedValue & "' and id='" & renta(x, 0) & "'"
+                                SqlDataSource2.UpdateCommand = "update tt_rentas set pagado='" & 1 & "', imprimir='" & 1 & "', cantidad_pagada=cantidad_pagada + cantidad, cantidad=0 where mes='" & DropDownList1.SelectedValue & "' and id='" & renta(x, 0) & "'"
                                 SqlDataSource2.Update()
                                 TextBox1.Text -= renta(x, 1)
                             End If
@@ -192,11 +196,12 @@ Partial Class _Default
                         For x = 0 To contador1
                             If Val(TextBox1.Text) > 0 Then
                                 If cobro(x, 1) > Val(TextBox1.Text) Then
-                                    SqlDataSource2.UpdateCommand = "update tt_rentas set cantidad= cantidad - '" & Val(TextBox1.Text) & "' where mes='" & DropDownList1.SelectedValue & "' and id='" & cobro(x, 0) & "'"
+
+                                    SqlDataSource2.UpdateCommand = "update tt_rentas set cantidad_pagada= cantidad_pagada + '" & Val(TextBox1.Text) & "',cantidad= cantidad - '" & Val(TextBox1.Text) & "', imprimir='" & 1 & "' where mes='" & DropDownList1.SelectedValue & "' and id='" & cobro(x, 0) & "'"
                                     SqlDataSource2.Update()
                                     TextBox1.Text = 0
                                 Else
-                                    SqlDataSource2.UpdateCommand = "update tt_rentas set pagado='" & 1 & "', cantidad=0 where mes='" & DropDownList1.SelectedValue & "' and id='" & cobro(x, 0) & "'"
+                                    SqlDataSource2.UpdateCommand = "update tt_rentas set pagado='" & 1 & "', imprimir='" & 1 & "', cantidad_pagada=cantidad_pagada + cantidad, cantidad=0 where mes='" & DropDownList1.SelectedValue & "' and id='" & cobro(x, 0) & "'"
                                     SqlDataSource2.Update()
                                     TextBox1.Text -= cobro(x, 1)
                                 End If
@@ -207,8 +212,8 @@ Partial Class _Default
                         SqlDataSource2.UpdateCommand = "update tt_cliente set saldo= saldo +'" & Val(TextBox1.Text) & "' where id='" & ddl_cliente.SelectedItem.Value & "'"
                         SqlDataSource2.Update()
                     End If
-
-                    a = "impresion_recibo.aspx?a=" + ddl_cliente.SelectedItem.Text + "&b=" + TextBox1.Text + "&c=" + Label46.Text + "&d=" + Label48.Text + "&e=" + DropDownList1.SelectedValue + "&g=" + ddl_cliente.SelectedValue + "&f=" & num
+                    'agrega el envio de los restos de las rentas y cobros en literales h e i
+                    a = "impresion_recibo.aspx?a=" + ddl_cliente.SelectedItem.Text + "&b=" + abono + "&c=" + Label46.Text + "&d=" + Label48.Text + "&e=" + DropDownList1.SelectedValue + "&g=" + ddl_cliente.SelectedValue + "&f=" + num
                     Dim script As String = " window.open('" + a + "','');"
                     ScriptManager.RegisterStartupScript(Me, Me.GetType(), "popup", script, True)
                     'Else
@@ -224,7 +229,7 @@ Partial Class _Default
                     resto = (Val(Label40.Text) + Val(TextBox1.Text)) - Val(Label44.Text)
                     SqlDataSource2.InsertCommand = "insert into tt_abonos(id_cliente,fecha,cantidad,renta,recoleccion) values('" & ddl_cliente.SelectedValue & "', '" & fecha.ToString("yyyy-MM-dd HH:mm:ss") & "', '" & (Val(Label40.Text) + Val(TextBox1.Text)) & "', '" & Label46.Text & "', '" & Label48.Text & "')"
                     SqlDataSource2.Insert()
-                    SqlDataSource2.UpdateCommand = "update tt_rentas set pagado='" & 1 & "' where mes='" & DropDownList1.SelectedValue & "' and cliente='" & ddl_cliente.SelectedItem.Value & "'"
+                    SqlDataSource2.UpdateCommand = "update tt_rentas set pagado='" & 1 & "', imprimir='" & 1 & "',cantidad_pagada=cantidad_pagada + cantidad, cantidad=0 where mes='" & DropDownList1.SelectedValue & "' and cliente='" & ddl_cliente.SelectedItem.Value & "'"
                     SqlDataSource2.Update()
                     SqlDataSource2.UpdateCommand = "update tt_cliente set saldo='" & resto & "' where id='" & ddl_cliente.SelectedItem.Value & "'"
                     SqlDataSource2.Update()
@@ -244,7 +249,7 @@ Partial Class _Default
                     resto = (Val(Label40.Text) + Val(TextBox1.Text)) - Val(Label44.Text)
                     SqlDataSource2.InsertCommand = "insert into tt_abonos(id_cliente,fecha,cantidad,renta,recoleccion) values('" & ddl_cliente.SelectedValue & "', '" & fecha.ToString("yyyy-MM-dd HH:mm:ss") & "', '" & Label44.Text & "', '" & Label46.Text & "', '" & Label48.Text & "')"
                     SqlDataSource2.Insert()
-                    SqlDataSource2.UpdateCommand = "update tt_rentas set pagado='" & 1 & "' where mes='" & DropDownList1.SelectedValue & "' and cliente='" & ddl_cliente.SelectedItem.Value & "'"
+                    SqlDataSource2.UpdateCommand = "update tt_rentas set pagado='" & 1 & "', imprimir='" & 1 & "' ,cantidad_pagada=cantidad_pagada + cantidad, cantidad=0  where mes='" & DropDownList1.SelectedValue & "' and cliente='" & ddl_cliente.SelectedItem.Value & "'"
                     SqlDataSource2.Update()
                     SqlDataSource2.UpdateCommand = "update tt_cliente set saldo='" & resto & "' where id='" & ddl_cliente.SelectedItem.Value & "'"
                     SqlDataSource2.Update()
@@ -279,7 +284,7 @@ Partial Class _Default
                     For x = 0 To contador
                         If (Val(Label40.Text) + Val(TextBox1.Text)) > 0 Then
                             If renta(x, 1) > (Val(Label40.Text) + Val(TextBox1.Text)) Then
-                                SqlDataSource2.UpdateCommand = "update tt_rentas set cantidad= cantidad - '" & (Val(Label40.Text) + Val(TextBox1.Text)) & "' where mes='" & DropDownList1.SelectedValue & "' and id='" & renta(x, 0) & "'"
+                                SqlDataSource2.UpdateCommand = "update tt_rentas set cantidad= cantidad - '" & (Val(Label40.Text) + Val(TextBox1.Text)) & "',cantidad_pagada= cantidad_pagada + '" & (Val(Label40.Text) + Val(TextBox1.Text)) & "' where mes='" & DropDownList1.SelectedValue & "' and id='" & renta(x, 0) & "'"
                                 SqlDataSource2.Update()
 
                                 SqlDataSource2.UpdateCommand = "update tt_cliente set saldo = 0 where cliente='" & ddl_cliente.SelectedItem.Value & "' "
@@ -287,7 +292,7 @@ Partial Class _Default
                                 TextBox1.Text = 0
                                 Label40.Text = 0
                             Else
-                                SqlDataSource2.UpdateCommand = "update tt_rentas set pagado='" & 1 & "', cantidad= 0 where mes='" & DropDownList1.SelectedValue & "' and id='" & renta(x, 0) & "'"
+                                SqlDataSource2.UpdateCommand = "update tt_rentas set pagado='" & 1 & "', imprimir='" & 1 & "',cantidad_pagada=cantidad_pagada + cantidad, cantidad= 0 where mes='" & DropDownList1.SelectedValue & "' and id='" & renta(x, 0) & "'"
                                 SqlDataSource2.Update()
                                 Dim diferencia As Integer
                                 If (renta(x, 1) > Val(TextBox1.Text)) Then
@@ -320,12 +325,12 @@ Partial Class _Default
                         For x = 0 To contador1
                             If (Val(Label40.Text) + Val(TextBox1.Text)) > 0 Then
                                 If cobro(x, 1) > Val(TextBox1.Text) + Val(Label40.Text) Then
-                                    SqlDataSource2.UpdateCommand = "update tt_rentas set cantidad= cantidad - '" & Val(TextBox1.Text) & "' where mes='" & DropDownList1.SelectedValue & "' and id='" & cobro(x, 0) & "'"
+                                    SqlDataSource2.UpdateCommand = "update tt_rentas set cantidad= cantidad - '" & Val(TextBox1.Text) & "',cantidad_pagada= cantidad_pagada + '" & Val(TextBox1.Text) & "' where mes='" & DropDownList1.SelectedValue & "' and id='" & cobro(x, 0) & "'"
                                     SqlDataSource2.Update()
                                     TextBox1.Text = 0
                                     Label40.Text = 0
                                 Else
-                                    SqlDataSource2.UpdateCommand = "update tt_rentas set pagado='" & 1 & "', cantidad= 0 where mes='" & DropDownList1.SelectedValue & "' and id='" & cobro(x, 0) & "'"
+                                    SqlDataSource2.UpdateCommand = "update tt_rentas set pagado='" & 1 & "', imprimir='" & 1 & "', cantidad= 0,cantidad_pagada=cantidad_pagada + cantidad, where mes='" & DropDownList1.SelectedValue & "' and id='" & cobro(x, 0) & "'"
                                     SqlDataSource2.Update()
                                     Dim diferencia As Integer
                                     If (cobro(x, 1) > Val(TextBox1.Text)) Then
